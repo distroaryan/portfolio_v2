@@ -1,14 +1,18 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
-import { BottomNavigation } from '@/components/bottom-navigation';
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
+import { Inter, Fira_Code, Newsreader } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-mono" });
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
 
 export const metadata: Metadata = {
-  title: 'Aryan Srivastava - Portfolio',
-  description: 'Computer Science Undergrad & Full Stack Developer Portfolio',
+  title: "Aryan Srivastava - Portfolio",
+  description: "Backend Engineer",
 };
 
 export default function RootLayout({
@@ -17,17 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-          {children}
-          <BottomNavigation />
-        </ThemeProvider>
+    <html lang="en" className="dark">
+      <body
+        className={`${inter.variable} ${firaCode.variable} ${newsreader.variable} bg-black text-gray-200 antialiased`}
+        style={{ fontFamily: "var(--font-body), sans-serif" }}
+      >
+        <Navbar />
+        {children}
       </body>
     </html>
   );
