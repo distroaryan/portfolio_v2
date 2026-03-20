@@ -8,6 +8,7 @@ const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-mono" });
 const newsreader = Newsreader({
   subsets: ["latin"],
   variable: "--font-heading",
+  adjustFontFallback: false,
 });
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
