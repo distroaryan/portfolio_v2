@@ -56,6 +56,24 @@
     @apply border-border;
   }
   body {
-    @apply bg-black text-white; /* Force bg-black text-white directly */
+    @apply text-white; 
   }
+}
+
+/* Custom Sky Syntax Highlight Theme Overrides (on top of atom-one-dark) */
+.hljs-keyword, .hljs-selector-tag, .hljs-built_in, .hljs-name, .hljs-tag {
+  color: theme('colors.sky.400') !important;
+}
+.hljs-string, .hljs-meta, .hljs-type, .hljs-attr, .hljs-symbol, .hljs-bullet, .hljs-addition, .hljs-variable, .hljs-template-variable, .hljs-link {
+  color: theme('colors.sky.300') !important;
+}
+.hljs-title, .hljs-section, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_ {
+  color: theme('colors.sky.200') !important;
+}
+.hljs-comment, .hljs-quote, .hljs-deletion {
+  color: theme('colors.gray.400') !important;
+  font-style: italic;
+}
+.hljs-number, .hljs-literal, .hljs-doctag, .hljs-regexp {
+  color: theme('colors.sky.500') !important;
 }

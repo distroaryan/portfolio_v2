@@ -33,8 +33,9 @@ export default function RoleAnimator() {
   return (
     <div className="h-[22px] overflow-hidden relative mb-5">
       <p
-        className="text-[13px] tracking-[0.35em] uppercase text-emerald-400/70 font-mono transition-all duration-500 ease-in-out"
+        className="text-[14px] tracking-[0.2em] italic text-yellow-400/80 transition-all duration-500 ease-in-out"
         style={{
+          fontFamily: "var(--font-heading), serif",
           transform:
             phase === "in"
               ? "translateY(0)"
