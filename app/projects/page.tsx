@@ -8,7 +8,7 @@ interface ProjectSummary {
   slug: string;
   title: string;
   description: string;
-  type: "Backend" | "Full stack";
+  type: "Backend" | "Full stack" | "Fun";
   tags: string[];
   image?: string;
   github?: string;
@@ -23,7 +23,7 @@ export default function Page() {
   const projects: ProjectSummary[] = [
     {
       slug: "flowguard",
-      title: "🛡️ FlowGuard",
+      title: "FlowGuard",
       description: "A high-performance, thread-safe, and distributed rate limiter library for Go. Built with Clean Architecture principles.",
       type: "Backend",
       tags: ["Go", "Redis"],
@@ -42,7 +42,7 @@ export default function Page() {
     {
       slug: "golb",
       title: "Golb",
-      description: "A load balancer written in go from scratch to understand network programming and load distribution.",
+      description: "A load balancer written in Go from scratch to understand network programming and load distribution.",
       type: "Backend",
       tags: ["Go", "k6", "htmx", "tailwindcss"],
       image: "/golb.png",
@@ -51,12 +51,40 @@ export default function Page() {
     {
       slug: "coursegen",
       title: "CourseGen",
-      description: "Prompt course generator: An AI powered platform to generate comprehensive courses from a simple prompt.",
+      description: "Prompt course generator: An AI-powered platform to generate comprehensive courses from a simple prompt.",
       type: "Full stack",
       tags: ["Nextjs", "better-auth", "postgres", "ai"],
       image: "/coursegen.png",
       github: "https://github.com/distroaryan/coursegen",
       liveLink: "https://coursegen-five.vercel.app/",
+    },
+    {
+      slug: "exam-service",
+      title: "Exam Service",
+      description: "A simple exam service with all 4 types of gRPC services: unary, client streaming, server streaming, and bidirectional streaming.",
+      type: "Fun",
+      tags: ["Go", "gRPC"],
+    },
+    {
+      slug: "restaurant-management",
+      title: "Restaurant Management",
+      description: "A simple restaurant management backend to get some practice with Gin, Go-MongoDB, Prometheus, Grafana, OpenTelemetry, and k6.",
+      type: "Fun",
+      tags: ["Go", "MongoDB", "Gin", "Prometheus", "Grafana", "OpenTelemetry"],
+    },
+    {
+      slug: "bencoder-parser",
+      title: "Bencoder Parser",
+      description: "A simple lightweight parser which encodes and decodes metadata used by .torrent files.",
+      type: "Fun",
+      tags: ["Go"],
+    },
+    {
+      slug: "gocc",
+      title: "GoCC",
+      description: "",
+      type: "Fun",
+      tags: ["Go", "MVCC", "Databases"],
     },
   ];
 
@@ -70,10 +98,10 @@ export default function Page() {
 
   const getTagDescription = () => {
     switch (activeTag) {
-      case "All": return "What I cannot create I never fully understood it";
-      case "Backend projects": return "I don't just like experimenting with backend libraries but also creating them from scratch";
-      case "Full stack projects": return "In the age of AI I love to test the abilities of Agentic code editors sometimes, I draft the project and vibe code them";
-      case "Fun projects": return "These are the projects I create while trying to experiment with some technologies or any concepts";
+      case "All": return;
+      case "Backend projects": return "I don't just like experimenting with backend libraries, but also creating them from scratch";
+      case "Full stack projects": return "In the age of AI, I love to test the abilities of agentic code editors. Sometimes, I draft the project and vibe-code them";
+      case "Fun projects": return "These are the projects I create while experimenting with new technologies or concepts";
       default: return "";
     }
   };
@@ -105,9 +133,9 @@ export default function Page() {
             ))}
           </div>
 
-          <p className="text-[14px] text-gray-400 mb-8 italic">
-            "{getTagDescription()}"
-          </p>
+          {/* <p className="text-[14px] text-gray-400 mb-8 italic">
+            {getTagDescription()}
+          </p> */}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8">
             {filteredProjects.length > 0 ? (
@@ -116,27 +144,11 @@ export default function Page() {
                   key={project.slug}
                   className="group rounded-xl border border-white/[0.08] bg-white/[0.025] overflow-hidden hover:border-yellow-500/50 hover:bg-white/[0.04] transition-all duration-300 hover:shadow-lg hover:shadow-yellow-900/20 flex flex-col justify-between"
                 >
-                  {/* Image */}
-                  <div className="relative h-44 w-full bg-gradient-to-br from-gray-900 to-black overflow-hidden shrink-0">
-                    {project.image ? (
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover object-top opacity-80 group-hover:opacity-100 transition-all duration-500"
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-gray-700">
-                        <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
+
 
                   <div className="p-5 flex flex-col grow">
                     <div className="flex flex-col gap-3 mb-2 w-full">
-                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 w-full border-none">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full border-none">
                         <h2 className="text-lg font-bold text-yellow-400/90 leading-tight" style={{ fontFamily: "var(--font-heading), serif" }}>
                           {project.title}
                         </h2>
@@ -148,7 +160,7 @@ export default function Page() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-full bg-yellow-500"></span>
                               </span>
-                              <span className="whitespace-nowrap">Live link</span>
+                              <span className="whitespace-nowrap leading-none mt-[1px]">Live link</span>
                               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 2.25 0 003 8.25v10.5A2.25 2.25 2.25 0 005.25 21h10.5A2.25 2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                               </svg>
@@ -176,7 +188,7 @@ export default function Page() {
                       </div>
                     </div>
                     
-                    <p className="text-[16px] text-gray-300 leading-relaxed mb-6 mt-2 line-clamp-3">
+                    <p className="text-[16px] text-gray-300 leading-relaxed mb-6 mt-2">
                       {project.description}
                     </p>
                   </div>

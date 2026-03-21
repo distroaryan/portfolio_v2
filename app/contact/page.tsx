@@ -116,10 +116,10 @@ export default function ContactPage() {
 
             <div className="bg-white/[0.02] border border-white/[0.08] rounded-xl p-6 mt-auto">
               <p className="text-sm text-gray-300 italic mb-4">
-                "The best way to predict the future is to invent it."
+                "Make it work, make it right, make it fast."
               </p>
               <p className="text-xs font-bold text-yellow-400/80 text-right uppercase tracking-wider">
-                — Alan Kay
+                — Kent Beck
               </p>
             </div>
           </div>

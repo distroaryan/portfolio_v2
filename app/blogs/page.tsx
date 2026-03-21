@@ -4,6 +4,7 @@ interface BlogPostSummary {
   slug?: string;
   link?: string;
   title: string;
+  description: string;
   date: string;
   readTime: string;
 }
@@ -12,9 +13,10 @@ export default function Page() {
   const posts: BlogPostSummary[] = [
     {
       link: "https://medium.com/@srivastavaaryanalc76/building-a-distributed-hash-table-dht-in-go-from-scratch-a-deep-dive-into-kademlia-6895c406dc9b",
-      title: "Building a DHT in Go from Scratch: A Deep Dive into Kademlia Paper 🚀",
-      date: "August 2024",
-      readTime: "10 min",
+      title: "Building a Distributed Hash Table (DHT) in Go from Scratch",
+      description: "A complete guide to building a functional, minimal Distributed Hash Table (DHT) from scratch in Go using the Kademlia architecture.",
+      date: "March 3, 2026",
+      readTime: "📖 15 min Read",
     },
   ];
 
@@ -40,9 +42,9 @@ export default function Page() {
             </Link>
           </div>
 
-          <p className="text-gray-400 italic mb-10 border-l-2 border-yellow-500/50 pl-4 py-1 text-[15px]">
-            "If you want to master something, teach it." <br/>
-            <span className="text-yellow-400 not-italic font-bold mt-1.5 inline-block text-[13px] tracking-wide uppercase">— Richard Feynman</span>
+          <p className="text-gray-400 italic mb-10 border-l-2 border-yellow-500/50 pl-4 py-1 text-[15px] leading-relaxed">
+            "If you want to master something, teach it. The more you teach, the better you learn. Teaching is a powerful tool to learning." <br/>
+            <span className="text-yellow-400 not-italic font-bold mt-2 inline-block text-[13px] tracking-wide uppercase">— Richard Feynman</span>
           </p>
 
           <div className="flex flex-col gap-4 mt-4">
@@ -52,14 +54,17 @@ export default function Page() {
                 href={post.link || `/blogs/${post.slug}`}
                 target={post.link ? "_blank" : undefined}
                 rel={post.link ? "noopener noreferrer" : undefined}
-                className="group p-6 rounded-xl border border-white/[0.08] bg-white/[0.025] hover:border-yellow-500/50 hover:bg-white/[0.04] transition-all duration-300 hover:shadow-lg hover:shadow-yellow-900/20 flex flex-col justify-center gap-2"
+                className="group p-5 rounded-lg border border-white/[0.08] bg-white/[0.04] hover:border-yellow-500/50 hover:bg-white/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-yellow-900/20 flex flex-col justify-center"
               >
-                <h2 className="text-xl font-bold text-gray-100 group-hover:text-yellow-400 transition-colors">
+                <h2 className="text-xl font-bold text-gray-100 mb-1 group-hover:text-yellow-400 transition-colors">
                   {post.title}
                 </h2>
-                <div className="text-[16px] text-gray-300 font-medium font-mono">
-                  {post.date} &mdash; {post.readTime}
+                <div className="text-[14px] text-gray-400 font-mono mt-1 mb-1">
+                  {post.date} &bull; {post.readTime}
                 </div>
+                <p className="text-[16px] text-gray-300 leading-relaxed mt-2">
+                  {post.description}
+                </p>
               </Link>
             ))}
           </div>

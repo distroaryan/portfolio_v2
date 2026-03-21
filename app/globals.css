@@ -27,7 +27,7 @@
     --ring: 0 0% 83.1%;
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 0 0% 0%;
     --foreground: 0 0% 98%;
@@ -55,25 +55,91 @@
   * {
     @apply border-border;
   }
+
+  html,
   body {
-    @apply text-white; 
+    scrollbar-width: none;
+  }
+
+  *::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 /* Custom Sky Syntax Highlight Theme Overrides (on top of atom-one-dark) */
-.hljs-keyword, .hljs-selector-tag, .hljs-built_in, .hljs-name, .hljs-tag {
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
   color: theme('colors.sky.400') !important;
 }
-.hljs-string, .hljs-meta, .hljs-type, .hljs-attr, .hljs-symbol, .hljs-bullet, .hljs-addition, .hljs-variable, .hljs-template-variable, .hljs-link {
+
+.hljs-string,
+.hljs-meta,
+.hljs-type,
+.hljs-attr,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link {
   color: theme('colors.sky.300') !important;
 }
-.hljs-title, .hljs-section, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_ {
+
+.hljs-title,
+.hljs-section,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
   color: theme('colors.sky.200') !important;
 }
-.hljs-comment, .hljs-quote, .hljs-deletion {
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
   color: theme('colors.gray.400') !important;
   font-style: italic;
 }
-.hljs-number, .hljs-literal, .hljs-doctag, .hljs-regexp {
+
+.hljs-number,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
   color: theme('colors.sky.500') !important;
 }

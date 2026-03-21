@@ -14,7 +14,7 @@ const socials = [
     href: "https://www.linkedin.com/in/aryan-srivastava-560b91255/",
   },
   {
-    label: "Mail",
+    label: "Email",
     href: "mailto:srivastavaaryanalc76@gmail.com",
   },
 ];
@@ -35,7 +35,7 @@ export default function SocialLinks() {
             href={s.href}
             target={s.href.startsWith("mailto") ? undefined : "_blank"}
             rel="noopener noreferrer"
-            className="text-[14px] font-mono text-gray-400 hover:text-yellow-400 transition-colors duration-200 uppercase tracking-wider"
+            className="text-[14px] font-mono text-gray-400 hover:text-yellow-400 transition-colors duration-200 tracking-wider"
           >
             {s.label}
           </Link>
