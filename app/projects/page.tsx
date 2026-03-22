@@ -64,6 +64,7 @@ export default function Page() {
       description: "A simple exam service with all 4 types of gRPC services: unary, client streaming, server streaming, and bidirectional streaming.",
       type: "Fun",
       tags: ["Go", "gRPC"],
+      github: "https://github.com/distroaryan/grpc-exam-service",
     },
     {
       slug: "restaurant-management",
@@ -71,6 +72,7 @@ export default function Page() {
       description: "A simple restaurant management backend to get some practice with Gin, Go-MongoDB, Prometheus, Grafana, OpenTelemetry, and k6.",
       type: "Fun",
       tags: ["Go", "MongoDB", "Gin", "Prometheus", "Grafana", "OpenTelemetry"],
+      github: "https://github.com/distroaryan/restaurant-management",
     },
     {
       slug: "bencoder-parser",
@@ -78,6 +80,7 @@ export default function Page() {
       description: "A simple lightweight parser which encodes and decodes metadata used by .torrent files.",
       type: "Fun",
       tags: ["Go"],
+      github: "https://github.com/distroaryan/bencoder-parser",
     },
     {
       slug: "gocc",
@@ -85,6 +88,7 @@ export default function Page() {
       description: "",
       type: "Fun",
       tags: ["Go", "MVCC", "Databases"],
+      github: "https://github.com/distroaryan/database-concurrency-control-protocol-simulation",
     },
   ];
 

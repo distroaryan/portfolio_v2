@@ -3,11 +3,11 @@ import Link from "next/link";
 const socials = [
   {
     label: "Twitter",
-    href: "https://x.com/yetanothercode",
+    href: "https://x.com/distroaryan/",
   },
   {
     label: "Github",
-    href: "https://github.com/Aryan123-rgb",
+    href: "https://github.com/distroaryan/",
   },
   {
     label: "Linkedin",

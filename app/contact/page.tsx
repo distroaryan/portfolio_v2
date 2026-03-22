@@ -107,8 +107,8 @@ export default function ContactPage() {
               <div>
                 <span className="text-xs font-bold text-gray-500 block mb-2">Follow Me</span>
                 <div className="flex gap-4">
-                  <Link href="https://github.com/Aryan123-rgb" target="_blank" className="text-sm text-gray-300 hover:text-yellow-400 transition-colors">GitHub</Link>
-                  <Link href="https://x.com/yetanothercode" target="_blank" className="text-sm text-gray-300 hover:text-yellow-400 transition-colors">Twitter</Link>
+                  <Link href="https://github.com/distroaryan/" target="_blank" className="text-sm text-gray-300 hover:text-yellow-400 transition-colors">GitHub</Link>
+                  <Link href="https://x.com/distroaryan/" target="_blank" className="text-sm text-gray-300 hover:text-yellow-400 transition-colors">Twitter</Link>
                   <Link href="https://www.linkedin.com/in/aryan-srivastava-560b91255/" target="_blank" className="text-sm text-gray-300 hover:text-yellow-400 transition-colors">LinkedIn</Link>
                 </div>
               </div>
