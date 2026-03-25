@@ -11,6 +11,7 @@ interface ProjectSummary {
   type: "Backend" | "Full stack" | "Fun";
   tags: string[];
   image?: string;
+  architecture?: string;
   github?: string;
   liveLink?: string;
 }
@@ -19,8 +20,19 @@ type TagType = "All" | "Backend projects" | "Full stack projects" | "Fun project
 
 export default function Page() {
   const [activeTag, setActiveTag] = useState<TagType>("All");
+  const [expandedDiagram, setExpandedDiagram] = useState<string | null>(null);
 
   const projects: ProjectSummary[] = [
+    {
+      slug: "loadex",
+      title: "Loadex",
+      description: "A high-performance HTTP load balancer written in Go. It features multiple routing algorithms. It includes active connection tracking and supports production-grade monitoring using Prometheus and Grafana.",
+      type: "Backend",
+      tags: ["Go", "Prometheus", "Grafana", "K6"],
+      image: "/golb.png",
+      architecture: "/architecture_diagram_dark.png",
+      github: "https://github.com/distroaryan/loadex",
+    },
     {
       slug: "flowguard",
       title: "FlowGuard",
@@ -40,23 +52,31 @@ export default function Page() {
       github: "https://github.com/distroaryan/walgo",
     },
     {
-      slug: "golb",
-      title: "Golb",
-      description: "A load balancer written in Go from scratch to understand network programming and load distribution.",
-      type: "Backend",
-      tags: ["Go", "k6", "htmx", "tailwindcss"],
-      image: "/golb.png",
-      github: "https://github.com/distroaryan/golb",
-    },
-    {
       slug: "coursegen",
       title: "CourseGen",
       description: "Prompt course generator: An AI-powered platform to generate comprehensive courses from a simple prompt.",
       type: "Full stack",
-      tags: ["Nextjs", "better-auth", "postgres", "ai"],
+      tags: ["Nextjs", "better-auth", "postgres", "ai", "Inngest"],
       image: "/coursegen.png",
       github: "https://github.com/distroaryan/coursegen",
       liveLink: "https://coursegen-five.vercel.app/",
+    },
+    {
+      slug: "codecraft",
+      title: "Codecraft",
+      description: "An online judge platform similar to LeetCode where people can solve DSA questions. Code is evaluated using Judge0 and webhooks.",
+      type: "Full stack",
+      tags: ["Nextjs", "TypeScript", "Prisma", "Postgres", "Judge0", "Webhooks"],
+      github: "https://github.com/distroaryan/codecraft",
+    },
+    {
+      slug: "talk-to-code",
+      title: "Talk-To-Code",
+      description: "A RAG platform that allows you to upload a GitHub repository URL and ask any question related to that repository.",
+      type: "Full stack",
+      tags: ["Nextjs", "TypeScript", "Prisma", "Postgres", "Langchain", "Inngest"],
+      github: "https://github.com/distroaryan/talk-to-code-restapi",
+      liveLink: "https://talk-to-code.netlify.app/",
     },
     {
       slug: "exam-service",
@@ -192,9 +212,46 @@ export default function Page() {
                       </div>
                     </div>
                     
-                    <p className="text-[16px] text-gray-300 leading-relaxed mb-6 mt-2">
+                    <p className="text-[16px] text-gray-300 leading-relaxed mb-4 mt-2">
                       {project.description}
                     </p>
+
+                    {project.architecture && (
+                      <div className="mb-2">
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setExpandedDiagram(expandedDiagram === project.slug ? null : project.slug);
+                          }}
+                          className="flex items-center gap-2 text-[12px] font-mono text-yellow-500/70 hover:text-yellow-400 transition-colors group/btn"
+                        >
+                          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-yellow-500/10 group-hover/btn:bg-yellow-500/20 transition-colors">
+                            <svg
+                              className={`w-3 h-3 transition-transform duration-300 ${expandedDiagram === project.slug ? "rotate-180" : ""}`}
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </span>
+                          {expandedDiagram === project.slug ? "HIDE ARCHITECTURE" : "VIEW ARCHITECTURE"}
+                        </button>
+                        
+                        {expandedDiagram === project.slug && (
+                          <div className="mt-4 pt-4 border-t border-white/[0.08] transition-opacity duration-300">
+                            <div className="bg-black/40 border border-white/[0.05] rounded-xl p-2 sm:p-3 flex justify-center overflow-hidden">
+                              <img
+                                src={project.architecture}
+                                alt={`${project.title} Architecture`}
+                                className="w-full h-auto rounded drop-shadow-md opacity-90 hover:opacity-100 transition-opacity"
+                                loading="lazy"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))

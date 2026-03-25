@@ -7,6 +7,7 @@ interface BlogPostSummary {
   description: string;
   date: string;
   readTime: string;
+  tags?: string[];
 }
 
 export default function Page() {
@@ -17,6 +18,7 @@ export default function Page() {
       description: "A complete guide to building a functional, minimal Distributed Hash Table (DHT) from scratch in Go using the Kademlia architecture.",
       date: "March 3, 2026",
       readTime: "📖 15 min Read",
+      tags: ["Go", "Distributed Systems", "P2P"],
     },
   ];
 
@@ -62,6 +64,18 @@ export default function Page() {
                 <div className="text-[14px] text-gray-400 font-mono mt-1 mb-1">
                   {post.date} &bull; {post.readTime}
                 </div>
+                {post.tags && (
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] border border-yellow-500/30 bg-yellow-500/10 rounded-full px-2.5 py-0.5 text-yellow-400 font-mono"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <p className="text-[16px] text-gray-300 leading-relaxed mt-2">
                   {post.description}
                 </p>

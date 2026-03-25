@@ -6,7 +6,8 @@ export default function ShelfPage() {
     {
       title: "Kademlia: A Peer-to-Peer Information System Based on the XOR Metric",
       description: "The foundational paper by Petar Maymounkov and David Mazières detailing the distributed hash table (DHT) algorithm. It uses an XOR-based metric for distance and routing, which heavily influenced modern decentralized networks like IPFS and BitTorrent.",
-      link: "https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf"
+      link: "https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf",
+      tags: ["Distributed Systems", "P2P"]
     }
   ];
 
@@ -34,6 +35,18 @@ export default function ShelfPage() {
               <h2 className="text-lg font-bold text-gray-100 group-hover:text-yellow-400 transition-colors leading-[1.4]" style={{ fontFamily: "var(--font-heading), serif" }}>
                 {paper.title}
               </h2>
+              {paper.tags && (
+                <div className="flex flex-wrap gap-1.5">
+                  {paper.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[11px] border border-yellow-500/30 bg-yellow-500/10 rounded-full px-2.5 py-0.5 text-yellow-400 font-mono"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
               <p className="text-[14px] text-gray-300 leading-relaxed font-mono">
                 {paper.description}
               </p>
