@@ -1,31 +1,15 @@
 import Link from "next/link";
-import Image from "next/image";
 import RoleAnimator from "@/components/RoleAnimator";
 import SocialLinks from "@/components/SocialLinks";
+import { projects } from "@/lib/projects";
 
 /* ── Data ──────────────────────────────────────────── */
-
-const projects = [
-  {
-    name: "Flowguard",
-    description:
-      "A high-performance, thread-safe, distributed rate limiter library made from scratch using Go.",
-    tags: ["Go", "Rate Limiting", "Redis"],
-    github: "https://github.com/distroaryan/flowguard",
-  },
-  {
-    name: "Walgo",
-    description:
-      "A persistent, crash-safe key-value store written in Go, built on top of a custom Write-Ahead Log (WAL) engine",
-    tags: ["Go", "WAL", "Database"],
-    github: "https://github.com/distroaryan/walgo",
-  },
-];
 
 const posts = [
   {
     title: "Building a Distributed Hash Table (DHT) in Go from Scratch",
-    description: "A complete guide to building a functional, minimal Distributed Hash Table (DHT) from scratch in Go using the Kademlia architecture.",
+    description:
+      "A complete guide to building a functional, minimal Distributed Hash Table (DHT) from scratch in Go using the Kademlia architecture.",
     href: "https://medium.com/@srivastavaaryanalc76/building-a-distributed-hash-table-dht-in-go-from-scratch-a-deep-dive-into-kademlia-6895c406dc9b",
     date: "March 3, 2026",
     readTime: "📖 15 min Read",
@@ -57,9 +41,17 @@ export default function Home() {
             <span>Looking for full time opportunities</span>
           </div>
 
-          <p className="text-lg leading-relaxed text-gray-300 max-w-xl mb-4">
-            Backend engineer comfortable with working in golang, ts, python and many different tech stacks like PostgresSQL, Redis and Nginx. Like exploring database and systems internals.
-          </p>
+          <div className="font-mono text-[18px] leading-8 text-gray-400 max-w-2xl mb-8 space-y-6">
+            <p>
+              Backend-focused full-stack engineer with experience building web applications using <span className="text-yellow-400">Next.js</span>, <span className="text-yellow-400">TypeScript</span>, <span className="text-yellow-400">Prisma</span>, <span className="text-yellow-400">Drizzle</span>, and <span className="text-yellow-400">PostgreSQL</span>. Shipped <a href="https://talk-to-code.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors">Talk-to-Code</a> (10+ users) and <a href="https://coursegen-five.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors">CourseGen</a>.
+            </p>
+            <p>
+              I am deeply interested in <span className="text-yellow-400">backend</span> and <span className="text-yellow-400">systems</span> concepts. I have explored <span className="text-yellow-400">Go</span> and <span className="text-yellow-400">Python</span> by building projects like Loadex (a load balancer), FlowGuard (a rate limiter), and Walgo (a key-value store with write-ahead logging).
+            </p>
+            <p>
+              I enjoy reading <Link href="/shelf" className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors">articles</Link> about backend engineering, distributed systems, and infrastructure, and occasionally I write <Link href="/blogs" className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors">technical blogs</Link> myself.
+            </p>
+          </div>
 
           <SocialLinks />
         </section>
@@ -73,13 +65,11 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {projects.map((p) => (
+            {projects.slice(0, 2).map((p) => (
               <div
-                key={p.name}
+                key={p.slug}
                 className="group rounded-xl border border-white/[0.08] bg-white/[0.025] overflow-hidden hover:border-yellow-500/50 hover:bg-white/[0.04] transition-all duration-300 hover:shadow-lg hover:shadow-yellow-900/20"
               >
-
-
                 {/* Content */}
                 <div className="p-5">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2 w-full">
@@ -87,7 +77,7 @@ export default function Home() {
                       className="text-lg font-bold text-yellow-400/90 leading-tight"
                       style={{ fontFamily: "var(--font-heading), serif" }}
                     >
-                      {p.name}
+                      {p.title}
                     </h3>
                     <div className="flex items-center gap-2 shrink-0">
                       {p.github && (
@@ -98,7 +88,11 @@ export default function Home() {
                           className="text-gray-400 hover:text-yellow-400 p-1 transition-colors flex shrink-0"
                           title="View Source"
                         >
-                          <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                          <svg
+                            className="w-5 h-5 flex-shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
                             <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
                           </svg>
                         </Link>

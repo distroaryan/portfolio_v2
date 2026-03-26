@@ -3,10 +3,8 @@
 import { useState, useEffect } from "react";
 
 const roles = [
-  "Software Architect",
+  "Full Stack Engineer",
   "Backend Engineer",
-  "Systems & Infra",
-  "Distributed Systems",
 ];
 
 export default function RoleAnimator() {

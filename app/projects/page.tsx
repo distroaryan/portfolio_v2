@@ -1,134 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
+import { projects } from "@/lib/projects";
 
-interface ProjectSummary {
-  slug: string;
-  title: string;
-  description: string;
-  type: "Backend" | "Full stack" | "Fun";
-  tags: string[];
-  image?: string;
-  architecture?: string;
-  github?: string;
-  liveLink?: string;
-}
-
-type TagType = "All" | "Backend projects" | "Full stack projects" | "Fun projects";
+type TagType = "All" | "Backend projects" | "Full stack projects";
 
 export default function Page() {
   const [activeTag, setActiveTag] = useState<TagType>("All");
   const [expandedDiagram, setExpandedDiagram] = useState<string | null>(null);
 
-  const projects: ProjectSummary[] = [
-    {
-      slug: "loadex",
-      title: "Loadex",
-      description: "A high-performance HTTP load balancer written in Go. It features multiple routing algorithms. It includes active connection tracking and supports production-grade monitoring using Prometheus and Grafana.",
-      type: "Backend",
-      tags: ["Go", "Prometheus", "Grafana", "K6"],
-      image: "/golb.png",
-      architecture: "/architecture_diagram_dark.png",
-      github: "https://github.com/distroaryan/loadex",
-    },
-    {
-      slug: "flowguard",
-      title: "FlowGuard",
-      description: "A high-performance, thread-safe, and distributed rate limiter library for Go. Built with Clean Architecture principles.",
-      type: "Backend",
-      tags: ["Go", "Redis"],
-      image: "/rate_limiter.png",
-      github: "https://github.com/distroaryan/flowguard",
-    },
-    {
-      slug: "walgo",
-      title: "Walgo",
-      description: "A persistent, crash-safe key-value store written in Go, built on top of a custom Write-Ahead Log (WAL) engine.",
-      type: "Backend",
-      tags: ["Go", "WAL", "kv-store"],
-      image: "/walgo.png",
-      github: "https://github.com/distroaryan/walgo",
-    },
-    {
-      slug: "coursegen",
-      title: "CourseGen",
-      description: "Prompt course generator: An AI-powered platform to generate comprehensive courses from a simple prompt.",
-      type: "Full stack",
-      tags: ["Nextjs", "better-auth", "postgres", "ai", "Inngest"],
-      image: "/coursegen.png",
-      github: "https://github.com/distroaryan/coursegen",
-      liveLink: "https://coursegen-five.vercel.app/",
-    },
-    {
-      slug: "codecraft",
-      title: "Codecraft",
-      description: "An online judge platform similar to LeetCode where people can solve DSA questions. Code is evaluated using Judge0 and webhooks.",
-      type: "Full stack",
-      tags: ["Nextjs", "TypeScript", "Prisma", "Postgres", "Judge0", "Webhooks"],
-      github: "https://github.com/distroaryan/codecraft",
-    },
-    {
-      slug: "talk-to-code",
-      title: "Talk-To-Code",
-      description: "A RAG platform that allows you to upload a GitHub repository URL and ask any question related to that repository.",
-      type: "Full stack",
-      tags: ["Nextjs", "TypeScript", "Prisma", "Postgres", "Langchain", "Inngest"],
-      github: "https://github.com/distroaryan/talk-to-code-restapi",
-      liveLink: "https://talk-to-code.netlify.app/",
-    },
-    {
-      slug: "exam-service",
-      title: "Exam Service",
-      description: "A simple exam service with all 4 types of gRPC services: unary, client streaming, server streaming, and bidirectional streaming.",
-      type: "Fun",
-      tags: ["Go", "gRPC"],
-      github: "https://github.com/distroaryan/grpc-exam-service",
-    },
-    {
-      slug: "restaurant-management",
-      title: "Restaurant Management",
-      description: "A simple restaurant management backend to get some practice with Gin, Go-MongoDB, Prometheus, Grafana, OpenTelemetry, and k6.",
-      type: "Fun",
-      tags: ["Go", "MongoDB", "Gin", "Prometheus", "Grafana", "OpenTelemetry"],
-      github: "https://github.com/distroaryan/restaurant-management",
-    },
-    {
-      slug: "bencoder-parser",
-      title: "Bencoder Parser",
-      description: "A simple lightweight parser which encodes and decodes metadata used by .torrent files.",
-      type: "Fun",
-      tags: ["Go"],
-      github: "https://github.com/distroaryan/bencoder-parser",
-    },
-    {
-      slug: "gocc",
-      title: "GoCC",
-      description: "",
-      type: "Fun",
-      tags: ["Go", "MVCC", "Databases"],
-      github: "https://github.com/distroaryan/database-concurrency-control-protocol-simulation",
-    },
-  ];
-
   const filteredProjects = projects.filter((p) => {
-    if (activeTag === "All") return p.type === "Backend" || p.type === "Full stack"; // Hide fun projects
+    if (activeTag === "All") return true;
     if (activeTag === "Backend projects") return p.type === "Backend";
     if (activeTag === "Full stack projects") return p.type === "Full stack";
-    if (activeTag === "Fun projects") return p.type as any === "Fun";
     return true;
   });
-
-  const getTagDescription = () => {
-    switch (activeTag) {
-      case "All": return;
-      case "Backend projects": return "I don't just like experimenting with backend libraries, but also creating them from scratch";
-      case "Full stack projects": return "In the age of AI, I love to test the abilities of agentic code editors. Sometimes, I draft the project and vibe-code them";
-      case "Fun projects": return "These are the projects I create while experimenting with new technologies or concepts";
-      default: return "";
-    }
-  };
 
   return (
     <main className="min-h-screen text-white pb-24">
@@ -142,10 +29,10 @@ export default function Page() {
           </div>
 
           <div className="flex flex-wrap gap-2 mb-4">
-            {["All", "Backend projects", "Full stack projects", "Fun projects"].map((tag) => (
+            {["All", "Backend projects", "Full stack projects"].map((tag) => (
               <button
                 key={tag}
-                onClick={() => setActiveTag(tag as any)}
+                onClick={() => setActiveTag(tag as TagType)}
                 className={`text-[12px] font-mono px-3 py-1.5 rounded-full border transition-colors ${
                   activeTag === tag
                     ? "border-yellow-500/50 bg-yellow-500/10 text-yellow-400"
@@ -157,10 +44,6 @@ export default function Page() {
             ))}
           </div>
 
-          {/* <p className="text-[14px] text-gray-400 mb-8 italic">
-            {getTagDescription()}
-          </p> */}
-
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8">
             {filteredProjects.length > 0 ? (
               filteredProjects.map((project) => (
@@ -168,8 +51,6 @@ export default function Page() {
                   key={project.slug}
                   className="group rounded-xl border border-white/[0.08] bg-white/[0.025] overflow-hidden hover:border-yellow-500/50 hover:bg-white/[0.04] transition-all duration-300 hover:shadow-lg hover:shadow-yellow-900/20 flex flex-col justify-between"
                 >
-
-
                   <div className="p-5 flex flex-col grow">
                     <div className="flex flex-col gap-3 mb-2 w-full">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full border-none">

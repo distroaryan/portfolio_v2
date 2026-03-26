@@ -4,7 +4,8 @@ export default function Page() {
       company: "PLYPICKER",
       role: "Full Stack Intern",
       date: "October 2023 - May 2024",
-      tags: ["Node.js", "Express", "MongoDB", "TailwindCSS"],
+      tags: ["Node.js", "Express", "MongoDB", "TailwindCSS", "AWS", "JavaScript"],
+      certificate: "https://drive.google.com/file/d/11zeejmn9jYHZrTlOk4Zbljxd8T7ecB0m/view",
       bullets: [
         "Engineered the backend for a face-authentication attendance system by receiving facial embeddings from the mobile app, storing encrypted face descriptors in MongoDB, and implementing login-time verification using TensorFlow.js and face-api.js.",
         "Built a location tracking service that ingested GPS coordinates every 5 seconds, persisted route data, and computed travel distance using the Google Geolocation API and geolib, ensuring accurate movement tracking and efficient geospatial calculations.",
@@ -26,7 +27,7 @@ export default function Page() {
           <div className="flex flex-col gap-6">
             {experiences.map((exp, idx) => (
               <div key={idx} className="group p-6 rounded-xl border border-white/[0.08] bg-white/[0.025] hover:border-yellow-500/50 hover:bg-white/[0.04] transition-all duration-300 hover:shadow-lg hover:shadow-yellow-900/20">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
                   <div>
                     <h2 className="text-xl font-bold text-gray-100 group-hover:text-yellow-400 transition-colors" style={{ fontFamily: "var(--font-heading), serif" }}>
                       {exp.company}
@@ -35,8 +36,24 @@ export default function Page() {
                       {exp.role}
                     </p>
                   </div>
-                  <div className="text-[13px] text-yellow-500/80 font-mono sm:text-right border border-yellow-500/20 bg-yellow-500/5 px-2.5 py-1 rounded w-max">
-                    {exp.date}
+                  <div className="flex flex-col sm:items-end gap-2.5 shrink-0 mt-1 sm:mt-0">
+                    <div className="text-[13px] text-yellow-500/80 font-mono sm:text-right border border-yellow-500/20 bg-yellow-500/5 px-2.5 py-1 rounded w-max">
+                      {exp.date}
+                    </div>
+                    {exp.certificate && (
+                      <a
+                        href={exp.certificate}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 px-2.5 py-1 rounded-full text-[11px] font-mono hover:bg-yellow-500/20 transition-colors w-max"
+                      >
+                        <span>View Certificate</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </a>
+                    )}
                   </div>
                 </div>
 
@@ -55,6 +72,7 @@ export default function Page() {
                     </li>
                   ))}
                 </ul>
+
               </div>
             ))}
           </div>
