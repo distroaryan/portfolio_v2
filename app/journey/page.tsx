@@ -8,25 +8,25 @@ export default function JourneyPage() {
     {
       date: "March 2026",
       bullets: [
-        "Started reading my first white paper kademlia dht implementation in golang and implemented it as well. loved the concept of one node discovering the other node without any client interaction and how a node can enter and leave the network",
-        "wrote my first blog on medium about dht implementation in golang",
-        "created a restaurant management backend to tinker around with prometheus, grafana, open telemetry and k6. Loved every aspect of it",
+        "Started reading my first white paper on the Kademlia DHT and implemented it in Go. Loved the concept of nodes discovering each other without client interaction and dynamically joining or leaving the network.",
+        "Wrote my first blog post on Medium about implementing a DHT in Go.",
+        "Created a restaurant management backend to tinker with Prometheus, Grafana, OpenTelemetry, and k6. Loved every aspect of it.",
       ],
     },
     {
       date: "February 2026",
       bullets: [
-        "Started learning about the database internals, how the databases works what are lsm trees, what is write ahead logging, mvcc and different methods the database ensures concurrency",
-        "Created a simple kv store with write ahead logging and another kv store with mvcc, thought about adding optimistic locking as well but couldnt figure it out",
-        "Vibe coded a simple course generator website using antigravity, spended first 1 or 2 days in designing the lld and hld and after that created a roadmap for the AI and let it cook. Realized a very crucial lesson when working with AI if it makes a mistake it's very hard to debug without looking at the code because LLM hallucinates everything written by it is correct.",
+        "Started learning about database internals—how they work under the hood, LSM trees, write-ahead logging (WAL), MVCC, and the different methods databases use to ensure concurrency.",
+        "Created a simple key-value store with write-ahead logging and another one with MVCC. Thought about adding optimistic locking as well, but couldn't quite figure it out yet.",
+        "Vibe-coded a simple course generator website using Antigravity. Spent the first couple of days designing the LLD and HLD, then created a roadmap for the AI and let it cook. Learned a crucial lesson about working with AI: when it makes a mistake, it's very hard to debug without looking closely at the code because LLMs can confidently hallucinate incorrect solutions.",
       ],
     },
     {
       date: "January 2026",
       bullets: [
-        "Started learning golang from the famous website learn go with tests, got introduced to test driven development and spended nearly a month getting familiar with the syntax",
-        "Created the first golang project a simple rate limiter using token bucket algorithm and sliding window algorithm, tested them with unit tests and benchmark tests and got amazing response on the twitter",
-        "Realized this was the domain that I can spend a lot of time in going deep",
+        "Started learning Go from the famous website 'Learn Go with Tests'. Got introduced to test-driven development (TDD) and spent nearly a month getting familiar with the syntax.",
+        "Created my first Go project: a simple rate limiter using the token bucket and sliding window algorithms. Verified it with unit and benchmark tests, and received an amazing response on Twitter.",
+        "Realized this was the domain I could spend a lot of time going deep into.",
       ],
     },
   ];
