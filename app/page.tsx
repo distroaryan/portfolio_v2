@@ -43,13 +43,51 @@ export default function Home() {
 
           <div className="font-mono text-[18px] leading-8 text-gray-400 max-w-2xl mb-8 space-y-6">
             <p>
-              Backend-focused full-stack engineer with experience building web applications using <span className="text-yellow-400">Next.js</span>, <span className="text-yellow-400">TypeScript</span>, <span className="text-yellow-400">Prisma</span>, <span className="text-yellow-400">Drizzle</span>, and <span className="text-yellow-400">PostgreSQL</span>. Shipped <a href="https://talk-to-code.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors">Talk-to-Code</a> (10+ users) and <a href="https://coursegen-five.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors">CourseGen</a>.
+              Backend engineer who likes exploring system internals and love creating architecture diagrams from <span className="text-yellow-400">first principles</span>. I
+              primarily work with <span className="text-yellow-400">Go</span>,
+              spending time building backend tools from scratch to understand
+              how things
+              actually work. I also write{" "}
+              <Link
+                href="/blogs"
+                className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors"
+              >
+                deep technical dives
+              </Link>{" "}
+              on the things I build and read widely across{" "}
+              <Link
+                href="/shelf"
+                className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors"
+              >
+                backend engineering
+              </Link>
+              .
             </p>
             <p>
-              I am deeply interested in <span className="text-yellow-400">backend</span> and <span className="text-yellow-400">systems</span> concepts. I have explored <span className="text-yellow-400">Go</span> and <span className="text-yellow-400">Python</span> by building projects like Loadex (a load balancer), FlowGuard (a rate limiter), and Walgo (a key-value store with write-ahead logging).
-            </p>
-            <p>
-              I enjoy reading <Link href="/shelf" className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors">articles</Link> about backend engineering, distributed systems, and infrastructure, and occasionally I write <Link href="/blogs" className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors">technical blogs</Link> myself.
+              Beyond backends, I have experience building full-stack web
+              applications using{" "}
+              <span className="text-yellow-400">Next.js</span>,{" "}
+              <span className="text-yellow-400">TypeScript</span>,{" "}
+              <span className="text-yellow-400">Prisma</span>, and{" "}
+              <span className="text-yellow-400">PostgreSQL</span> — including{" "}
+              <Link
+                href="https://talk-to-code.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors"
+              >
+                Talk-to-Code
+              </Link>{" "}
+              (10+ users) and{" "}
+              <Link
+                href="https://coursegen-five.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-200 hover:text-yellow-400 underline decoration-white/20 underline-offset-4 transition-colors"
+              >
+                CourseGen
+              </Link>
+              .
             </p>
           </div>
 
