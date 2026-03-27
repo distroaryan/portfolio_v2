@@ -43,9 +43,9 @@ export default function Home() {
 
           <div className="font-mono text-[18px] leading-8 text-gray-400 max-w-2xl mb-8 space-y-6">
             <p>
-              Backend engineer who likes exploring system internals and love creating architecture diagrams from <span className="text-yellow-400">first principles</span>. I
-              primarily work with <span className="text-yellow-400">Go</span>,
-              spending time building backend tools from scratch to understand
+              Backend engineer who
+              primarily works with <span className="text-yellow-400">Go</span> and likes to 
+              spend time building backend tools from scratch to understand
               how things
               actually work. I also write{" "}
               <Link
