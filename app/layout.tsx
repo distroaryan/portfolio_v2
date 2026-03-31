@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import { Inter, Fira_Code, Newsreader, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-mono" });
@@ -41,6 +42,7 @@ export default function RootLayout({
         <div className="relative z-0">
           {children}
         </div>
+         <Analytics />
       </body>
     </html>
   );
