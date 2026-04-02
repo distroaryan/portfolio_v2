@@ -4,6 +4,12 @@ import React from "react";
 export default function ShelfPage() {
   const papers = [
     {
+      title: "How to Build End-to-End LLM Observability in FastAPI with OpenTelemetry",
+      description: "Building end-to-end, code-first LLM observability in a FastAPI application using the OpenTelemetry Python SDK.",
+      link: "https://www.freecodecamp.org/news/build-end-to-end-llm-observability-in-fastapi-with-opentelemetry/",
+      tags: ["Python", "OpenTelemetry", "LLM"]
+    },
+    {
       title: "Architecting a Go Backend with Event-Driven Design and the Outbox Pattern",
       description: "Implementing resilient, decoupled Go microservices using event-driven design and the outbox pattern.",
       link: "https://medium.com/@steffankharmaaiarvi/architecting-a-go-backend-with-event-driven-design-and-the-outbox-pattern-3928bf315e0a",
