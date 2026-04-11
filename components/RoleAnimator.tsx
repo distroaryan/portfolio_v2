@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 
 const roles = [
-  "Full Stack Engineer",
   "Backend Engineer",
+  "Full Stack Engineer",
 ];
 
 export default function RoleAnimator() {
@@ -17,7 +17,7 @@ export default function RoleAnimator() {
     if (phase === "in") {
       timeout = setTimeout(() => setPhase("hold"), 500);
     } else if (phase === "hold") {
-      timeout = setTimeout(() => setPhase("out"), 2200);
+      timeout = setTimeout(() => setPhase("out"), 2500);
     } else {
       timeout = setTimeout(() => {
         setIndex((prev) => (prev + 1) % roles.length);
@@ -29,18 +29,19 @@ export default function RoleAnimator() {
   }, [phase]);
 
   return (
-    <div className="h-[22px] overflow-hidden relative mb-5">
+    <div className="h-[28px] overflow-hidden relative mb-6">
       <p
-        className="text-[14px] tracking-[0.2em] italic text-yellow-400/80 transition-all duration-500 ease-in-out"
+        className="text-lg tracking-[0.15em] italic transition-all duration-500 ease-in-out"
         style={{
           fontFamily: "var(--font-heading), serif",
+          color: "var(--accent)",
+          opacity: phase === "out" ? 0 : 0.8,
           transform:
             phase === "in"
               ? "translateY(0)"
               : phase === "hold"
               ? "translateY(0)"
               : "translateY(-100%)",
-          opacity: phase === "out" ? 0 : 1,
         }}
         key={index}
       >

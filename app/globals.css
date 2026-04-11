@@ -2,52 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════
+   Design System — "Technical Boutique"
+   ═══════════════════════════════════════════════════ */
+
 @layer base {
   :root {
-    /* Force dark mode variables even in root if we want it always dark, 
-       but let's just make sure defaults are sane or purely rely on .dark class */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    /* ── Palette ── */
+    --bg-primary: #0a0a0a;
+    --bg-elevated: #111111;
+    --bg-card: rgba(255, 255, 255, 0.025);
+    --bg-card-hover: rgba(255, 255, 255, 0.08);
+
+    --accent: #d4a843;
+    --accent-muted: rgba(212, 168, 67, 0.12);
+    --accent-glow: rgba(212, 168, 67, 0.08);
+    --accent-border: rgba(212, 168, 67, 0.4);
+
+    --border: rgba(255, 255, 255, 0.06);
+
+    --text-primary: #f5f5f4;
+    --text-body: #d1d5db;
+    --text-muted: #9ca3af;
+    --text-dim: #6b7280;
+
+    /* ── Shadcn compat ── */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 42 60% 55%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 96%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --radius: 0.5rem;
+    --destructive-foreground: 0 0% 96%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 42 60% 55%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
   }
 }
 
@@ -59,6 +63,7 @@
   html,
   body {
     scrollbar-width: none;
+    background-color: var(--bg-primary);
   }
 
   *::-webkit-scrollbar {
@@ -66,25 +71,91 @@
     height: 0px;
     display: none;
   }
-
-  *::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background: transparent;
-  }
-
-  *::-webkit-scrollbar-thumb:hover {
-    background: transparent;
-  }
 }
 
-@layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.4s ease-out forwards;
-  }
+/* ═══════════════════════════════════════════════════
+   Noise Texture Overlay
+   ═══════════════════════════════════════════════════ */
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
+
+/* ═══════════════════════════════════════════════════
+   Glassmorphism Card System
+   ═══════════════════════════════════════════════════ */
+
+.glass-card {
+  position: relative;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  transition:
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Hover state: grey tint */
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Title inside a card turns gold on card hover */
+.glass-card-title {
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card:hover .glass-card-title {
+  color: #e8c664;
+}
+
+/* Inner glow effect */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Variant without hover scale - for static cards */
+.glass-card-static {
+  position: relative;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   Animations
+   ═══════════════════════════════════════════════════ */
 
 @keyframes fadeIn {
   from {
@@ -92,7 +163,6 @@
     transform: translateY(8px);
     filter: blur(2px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -100,13 +170,198 @@
   }
 }
 
-/* Custom Sky Syntax Highlight Theme Overrides (on top of atom-one-dark) */
+@keyframes blurIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes nodeGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(212, 168, 67, 0.4), 0 0 12px rgba(212, 168, 67, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(212, 168, 67, 0.7), 0 0 24px rgba(212, 168, 67, 0.2);
+  }
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-blur-in {
+    animation: blurIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-node-glow {
+    animation: nodeGlow 3s ease-in-out infinite;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   Skills Carousel
+   ═══════════════════════════════════════════════════ */
+
+.skills-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.skills-track {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: scrollLeft 32s linear infinite;
+}
+
+.skills-track:hover {
+  animation-play-state: paused;
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+  cursor: default;
+}
+
+.skill-pill:hover {
+  border-color: rgba(232, 198, 100, 0.35);
+  background: rgba(232, 198, 100, 0.06);
+  color: #fff;
+}
+
+/* Scroll reveal - starts hidden, becomes visible when .is-visible is added */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(4px);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ═══════════════════════════════════════════════════
+   Tag System — Monochrome to Color
+   ═══════════════════════════════════════════════════ */
+
+.tag-mono {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1;
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+/* Tags glow when parent card is hovered */
+.glass-card:hover .tag-mono,
+.tag-mono:hover {
+  color: var(--accent);
+  border-color: rgba(212, 168, 67, 0.3);
+  background: rgba(212, 168, 67, 0.08);
+}
+
+/* ═══════════════════════════════════════════════════
+   Terminal Snippet
+   ═══════════════════════════════════════════════════ */
+
+.terminal-snippet {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #4ade80;
+  overflow-x: auto;
+}
+
+.terminal-snippet .prompt {
+  color: var(--text-dim);
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   Ambient Grid Background
+   ═══════════════════════════════════════════════════ */
+
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 30%, transparent 70%);
+}
+
+/* Subtle radial glow at the top */
+.hero-glow {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 168, 67, 0.06) 0%,
+    rgba(212, 168, 67, 0.02) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   Code Syntax Highlight Overrides
+   ═══════════════════════════════════════════════════ */
+
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-built_in,
 .hljs-name,
 .hljs-tag {
-  color: theme('colors.sky.400') !important;
+  color: #d4a843 !important;
 }
 
 .hljs-string,
@@ -119,7 +374,7 @@
 .hljs-variable,
 .hljs-template-variable,
 .hljs-link {
-  color: theme('colors.sky.300') !important;
+  color: #e2c07a !important;
 }
 
 .hljs-title,
@@ -127,13 +382,13 @@
 .hljs-title.class_,
 .hljs-title.class_.inherited__,
 .hljs-title.function_ {
-  color: theme('colors.sky.200') !important;
+  color: #f5e6c3 !important;
 }
 
 .hljs-comment,
 .hljs-quote,
 .hljs-deletion {
-  color: theme('colors.gray.400') !important;
+  color: #6b7280 !important;
   font-style: italic;
 }
 
@@ -141,5 +396,5 @@
 .hljs-literal,
 .hljs-doctag,
 .hljs-regexp {
-  color: theme('colors.sky.500') !important;
+  color: #c9963a !important;
 }

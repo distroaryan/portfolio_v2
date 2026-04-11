@@ -1,5 +1,5 @@
-import Link from "next/link";
-import React from "react";
+import GlassCard from "@/components/GlassCard";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ShelfPage() {
   const papers = [
@@ -42,45 +42,79 @@ export default function ShelfPage() {
   ];
 
   return (
-    <main className="min-h-screen text-white pb-24">
-      <div className="relative max-w-[780px] mx-auto px-6 pt-36">
-        <div className="mb-16">
-          <h1 className="text-3xl font-bold font-mono text-yellow-400/90 tracking-wide mb-4">
-            Articles
-          </h1>
-          <p className="text-gray-400 font-mono text-[15px] border-l-2 border-yellow-500/50 pl-4 py-1 italic">
-            Curated engineering blogs for learning backend systems.  
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          {papers.map((paper, index) => (
-            <Link
-              key={index}
-              href={paper.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group p-6 rounded-xl border border-white/[0.08] bg-white/[0.025] hover:border-yellow-500/50 hover:bg-white/[0.04] transition-all duration-300 hover:shadow-lg hover:shadow-yellow-900/20 flex flex-col justify-center gap-3"
+    <main className="min-h-screen text-white pb-32">
+      <div className="relative max-w-[960px] mx-auto px-5 sm:px-6 pt-16 sm:pt-24 md:pt-32">
+        <ScrollReveal>
+          <div className="mb-20">
+            <h1
+              className="text-3xl sm:text-4xl font-bold tracking-wide mb-4"
+              style={{
+                fontFamily: "var(--font-heading), serif",
+                color: "var(--text-primary)",
+              }}
             >
-              <h2 className="text-xl font-bold text-gray-100 group-hover:text-yellow-400 transition-colors leading-[1.4]" style={{ fontFamily: "var(--font-heading), serif" }}>
-                {paper.title}
-              </h2>
-              {paper.tags && (
-                <div className="flex flex-wrap gap-1.5">
-                  {paper.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[11px] border border-yellow-500/30 bg-yellow-500/10 rounded-full px-2.5 py-0.5 text-yellow-400 font-mono"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+              Reading Shelf
+            </h1>
+            <p
+              className="text-base sm:text-lg italic max-w-2xl leading-relaxed"
+              style={{
+                fontFamily: "var(--font-heading), serif",
+                color: "var(--text-muted)",
+              }}
+            >
+              Curated engineering articles and papers that shaped how I think about backend systems.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="flex flex-col gap-4 sm:gap-6">
+          {papers.map((paper, index) => (
+            <ScrollReveal key={index} delay={index * 80}>
+              <GlassCard
+                href={paper.link}
+                external
+                className="group p-5 sm:p-7 md:p-8 flex flex-col gap-3 sm:gap-4"
+              >
+                <div className="flex items-start justify-between gap-6 mb-4">
+                  <h2
+                    className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.35] text-[var(--text-primary)] group-hover:text-[#e8c664] transition-colors duration-300"
+                    style={{
+                      fontFamily: "var(--font-heading), serif",
+                    }}
+                  >
+                    {paper.title}
+                  </h2>
+                  <svg
+                    className="w-5 h-5 shrink-0 mt-1 opacity-0 group-hover:opacity-60 transition-all duration-300 translate-x-0 group-hover:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    style={{ color: "var(--accent)" }}
+                    strokeWidth={1.5}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
                 </div>
-              )}
-              <p className="text-[16px] text-gray-300 leading-relaxed font-mono">
-                {paper.description}
-              </p>
-            </Link>
+
+                <p
+                  className="text-base sm:text-lg leading-relaxed mb-8"
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    color: "var(--text-body)",
+                  }}
+                >
+                  {paper.description}
+                </p>
+
+                {paper.tags && (
+                  <div className="flex flex-wrap items-center gap-3">
+                    {paper.tags.map((tag) => (
+                      <span key={tag} className="tag-mono font-medium">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </GlassCard>
+            </ScrollReveal>
           ))}
         </div>
       </div>

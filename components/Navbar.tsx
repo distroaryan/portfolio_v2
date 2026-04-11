@@ -2,25 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, FolderOpen, PenLine, Briefcase, Map, Library, Mail } from "lucide-react";
+import { Home, FolderOpen, Briefcase, Library } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/", icon: Home },
   { label: "Projects", href: "/projects", icon: FolderOpen },
-  { label: "Blogs", href: "/blogs", icon: PenLine },
   { label: "Experience", href: "/experience", icon: Briefcase },
-  { label: "Journey", href: "/journey", icon: Map },
   { label: "Shelf", href: "/shelf", icon: Library },
-  { label: "Contact", href: "/contact", icon: Mail },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <div className="fixed bottom-6 top-auto sm:top-6 sm:bottom-auto left-1/2 -translate-x-1/2 z-50">
-      <nav className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex items-center shadow-2xl shadow-black/50">
-        <ul className="flex items-center gap-1 sm:gap-2">
+    <div className="fixed bottom-4 sm:bottom-auto top-auto sm:top-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95vw]">
+      <nav className="glass-card-static backdrop-blur-2xl bg-[#0a0a0a]/80 border border-white/[0.08] rounded-full px-2 py-2 sm:px-2.5 sm:py-2.5 flex items-center shadow-2xl shadow-black/60">
+        <ul className="flex items-center gap-2 sm:gap-4 md:gap-2">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
@@ -30,14 +27,14 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   title={link.label}
-                  className={`flex items-center justify-center px-3 md:px-4 py-2 rounded-full transition-all duration-300 ${
+                  className={`flex items-center justify-center px-2.5 sm:px-3 md:px-4 py-2 rounded-full transition-all duration-500 ${
                     isActive
-                      ? "bg-yellow-500/10 text-yellow-400 font-medium"
-                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                      ? "bg-[rgba(212,168,67,0.18)] text-[#e8c664] font-semibold"
+                      : "text-gray-400 hover:text-white hover:bg-white/[0.06]"
                   }`}
                 >
-                  <Icon size={18} className="md:hidden" />
-                  <span className="hidden md:block text-[13px] tracking-wide font-medium">
+                  <Icon size={18} className="md:hidden" strokeWidth={isActive ? 2.2 : 1.5} />
+                  <span className="hidden md:block text-[13px] tracking-wider font-medium">
                     {link.label}
                   </span>
                 </Link>

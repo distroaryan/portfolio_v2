@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import GlassCard from "@/components/GlassCard";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function JourneyPage() {
   const journeys = [
@@ -18,7 +19,7 @@ export default function JourneyPage() {
       bullets: [
         "Started learning about database internals—how they work under the hood, LSM trees, write-ahead logging (WAL), MVCC, and the different methods databases use to ensure concurrency.",
         "Created a simple key-value store with write-ahead logging and another one with MVCC. Thought about adding optimistic locking as well, but couldn't quite figure it out yet.",
-        "Vibe-coded a simple course generator website using Antigravity. Spent the first couple of days designing the LLD and HLD, then created a roadmap for the AI and let it cook. Learned a crucial lesson about working with AI: when it makes a mistake, it's very hard to debug without looking closely at the code because LLMs can confidently hallucinate incorrect solutions.",
+        "Vibe-coded a simple course generator website using Antigravity. Spent the first couple of days designing the LLD and HLD, then created a roadmap for the AI and let it cook.",
       ],
     },
     {
@@ -37,55 +38,91 @@ export default function JourneyPage() {
     const handleScroll = () => {
       const scrolled = window.scrollY;
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = maxScroll > 0 ? scrolled / maxScroll : 0;
-      setScrollProgress(progress);
+      setScrollProgress(maxScroll > 0 ? scrolled / maxScroll : 0);
     };
-
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // init
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <main className="min-h-screen text-white pb-24">
-      
-      <div className="relative max-w-[780px] mx-auto px-6 pt-36">
-        <div className="flex items-center justify-between mb-16">
-          <h1 className="text-3xl font-bold font-mono text-yellow-400/90 tracking-wide">
+    <main className="min-h-screen text-white pb-32">
+      <div className="relative max-w-[960px] mx-auto px-5 sm:px-6 pt-24 sm:pt-32 md:pt-36">
+        <ScrollReveal>
+          <h1
+            className="text-3xl sm:text-4xl font-bold tracking-wide mb-10 sm:mb-14"
+            style={{
+              fontFamily: "var(--font-heading), serif",
+              color: "var(--text-primary)",
+            }}
+          >
             Journey
           </h1>
-        </div>
+        </ScrollReveal>
 
-        <div className="relative border-l border-white/10 ml-3 md:ml-[136px] pb-12">
-          {/* Animated Scroll Pole */}
-          <div 
-            className="absolute left-[-1px] top-0 w-[2px] bg-yellow-400 origin-top" 
-            style={{ height: `${scrollProgress * 100}%` }}
+        <div className="relative ml-0 sm:ml-4 md:ml-[140px] pl-6 sm:pl-10 md:pl-12 pb-12">
+          {/* Background line */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-[2px]"
+            style={{ background: "rgba(255,255,255,0.06)" }}
           />
-          
-          {journeys.map((exp, index) => (
-            <div key={index} className="mb-16 relative pl-8 md:pl-10">
-              {/* Timeline Dot */}
-              <div className="absolute w-3 h-3 bg-yellow-400 rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
-              
-              {/* Date on the left for md+ screens */}
-              <div className="md:absolute md:-left-[150px] md:top-0 md:w-28 md:text-right">
-                <span className="text-[15px] text-yellow-400/90 font-mono font-bold block mb-4 md:mb-0">
-                  {exp.date}
-                </span>
+          {/* Animated fill */}
+          <div
+            className="absolute left-0 top-0 w-[2px] transition-all duration-100"
+            style={{
+              height: `${scrollProgress * 100}%`,
+              background: "var(--accent)",
+              boxShadow: "0 0 8px rgba(212,168,67,0.3)",
+            }}
+          />
+
+          {journeys.map((entry, index) => (
+            <ScrollReveal key={index} delay={index * 100}>
+              <div className="mb-16 relative">
+                {/* Glowing node */}
+                <div
+                  className="absolute -left-[28px] sm:-left-[46px] md:-left-[52px] top-2 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full animate-node-glow"
+                  style={{ background: "var(--accent)" }}
+                />
+                {/* Connector */}
+                <div
+                  className="absolute -left-[22px] sm:-left-[40px] md:-left-[46px] top-[12px] sm:top-[13px] w-4 sm:w-6 h-[2px]"
+                  style={{ background: "rgba(212,168,67,0.25)" }}
+                />
+
+                {/* Date label */}
+                <div className="md:absolute md:-left-[164px] md:top-0 md:w-28 md:text-right">
+                  <span
+                    className="text-sm sm:text-base font-bold block mb-3 md:mb-0"
+                    style={{
+                      fontFamily: "var(--font-mono), monospace",
+                      color: "var(--accent)",
+                      opacity: 0.85,
+                    }}
+                  >
+                    {entry.date}
+                  </span>
+                </div>
+
+                <GlassCard className="p-5 sm:p-6 md:p-7">
+                  <ul className="list-none space-y-3 sm:space-y-4">
+                    {entry.bullets.map((bullet, i) => (
+                      <li
+                        key={i}
+                        className="text-[15px] sm:text-[17px] leading-relaxed flex items-start gap-2 sm:gap-3"
+                        style={{
+                          fontFamily: "var(--font-body), sans-serif",
+                          color: "var(--text-body)",
+                        }}
+                      >
+                        <span className="shrink-0 mt-1" style={{ color: "var(--accent)", opacity: 0.5 }}>▹</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </GlassCard>
               </div>
-              
-              <div className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] transition-colors shadow-lg shadow-yellow-900/10">
-                <ul className="list-none space-y-4">
-                  {exp.bullets.map((bullet, i) => (
-                    <li key={i} className="text-[14px] text-gray-300 leading-relaxed font-mono flex items-start gap-3">
-                      <span className="text-yellow-500/50 flex-shrink-0 mt-0.5">▹</span>
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

@@ -1,3 +1,5 @@
+import GlassCard from "@/components/GlassCard";
+import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
 
 interface BlogPostSummary {
@@ -23,66 +25,101 @@ export default function Page() {
   ];
 
   return (
-    <main className="min-h-screen text-white pb-24">
-
-      <div className="relative max-w-[780px] mx-auto px-6 pt-36">
-        <section>
+    <main className="min-h-screen text-white pb-32">
+      <div className="relative max-w-[960px] mx-auto px-5 sm:px-6 pt-24 sm:pt-32 md:pt-36">
+        <ScrollReveal>
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-3xl font-bold font-mono text-yellow-400/90 tracking-wide">
+            <h1
+              className="text-3xl sm:text-4xl font-bold tracking-wide"
+              style={{
+                fontFamily: "var(--font-heading), serif",
+                color: "var(--text-primary)",
+              }}
+            >
               Blogs
             </h1>
             <Link
               href="https://medium.com/@srivastavaaryanalc76"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-1.5 border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 rounded hover:bg-yellow-500/20 transition-colors font-mono text-[13px]"
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono transition-all duration-300 hover:bg-[rgba(212,168,67,0.12)]"
+              style={{
+                border: "1px solid rgba(212,168,67,0.25)",
+                background: "rgba(212,168,67,0.06)",
+                color: "var(--accent)",
+              }}
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
               </svg>
-              View on Medium
+              Medium
             </Link>
           </div>
 
-          <p className="text-gray-400 italic mb-10 border-l-2 border-yellow-500/50 pl-4 py-1 text-[15px] leading-relaxed">
-            "If you want to master something, teach it. The more you teach, the better you learn. Teaching is a powerful tool to learning." <br/>
-            <span className="text-yellow-400 not-italic font-bold mt-2 inline-block text-[13px] tracking-wide uppercase">— Richard Feynman</span>
+          <p
+            className="italic mb-12 border-l-2 pl-5 py-2 text-lg leading-relaxed"
+            style={{
+              fontFamily: "var(--font-heading), serif",
+              color: "var(--text-body)",
+              borderColor: "rgba(212,168,67,0.4)",
+            }}
+          >
+            "If you want to master something, teach it." <br/>
+            <span
+              className="not-italic font-bold mt-2 inline-block text-sm tracking-widest uppercase"
+              style={{ color: "var(--accent)" }}
+            >
+              — Richard Feynman
+            </span>
           </p>
+        </ScrollReveal>
 
-          <div className="flex flex-col gap-4 mt-4">
-            {posts.map((post) => (
-              <Link
-                key={post.title}
+        <div className="flex flex-col gap-5">
+          {posts.map((post, i) => (
+            <ScrollReveal key={post.title} delay={i * 80}>
+              <GlassCard
                 href={post.link || `/blogs/${post.slug}`}
-                target={post.link ? "_blank" : undefined}
-                rel={post.link ? "noopener noreferrer" : undefined}
-                className="group p-5 rounded-lg border border-white/[0.08] bg-white/[0.04] hover:border-yellow-500/50 hover:bg-white/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-yellow-900/20 flex flex-col justify-center"
+                external={!!post.link}
+                className="group p-7"
               >
-                <h2 className="text-xl font-bold text-gray-100 mb-1 group-hover:text-yellow-400 transition-colors">
+                <h2
+                  className="text-2xl font-bold mb-2 transition-colors duration-300"
+                  style={{
+                    fontFamily: "var(--font-heading), serif",
+                    color: "var(--text-primary)",
+                  }}
+                >
                   {post.title}
                 </h2>
-                <div className="text-[14px] text-gray-400 font-mono mt-1 mb-1">
+                <div
+                  className="text-sm mb-3"
+                  style={{
+                    fontFamily: "var(--font-mono), monospace",
+                    color: "var(--text-muted)",
+                  }}
+                >
                   {post.date} &bull; {post.readTime}
                 </div>
                 {post.tags && (
-                  <div className="flex flex-wrap gap-1.5 mt-1">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[11px] border border-yellow-500/30 bg-yellow-500/10 rounded-full px-2.5 py-0.5 text-yellow-400 font-mono"
-                      >
-                        {tag}
-                      </span>
+                      <span key={tag} className="tag-mono">{tag}</span>
                     ))}
                   </div>
                 )}
-                <p className="text-[16px] text-gray-300 leading-relaxed mt-2">
+                <p
+                  className="text-lg leading-relaxed"
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    color: "var(--text-body)",
+                  }}
+                >
                   {post.description}
                 </p>
-              </Link>
-            ))}
-          </div>
-        </section>
+              </GlassCard>
+            </ScrollReveal>
+          ))}
+        </div>
       </div>
     </main>
   );
