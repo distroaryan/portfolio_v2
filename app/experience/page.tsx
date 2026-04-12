@@ -3,23 +3,9 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import GlassCard from "@/components/GlassCard";
 import { useState, useEffect } from "react";
+import { projects as experiences } from "@/lib/experience";
 
 export default function Page() {
-  const experiences = [
-    {
-      company: "PLYPICKER",
-      role: "Full Stack Intern",
-      date: "Oct 2023 — May 2024",
-      tags: ["Node.js", "Express", "MongoDB", "TailwindCSS", "AWS", "JavaScript"],
-      certificate: "https://drive.google.com/file/d/11zeejmn9jYHZrTlOk4Zbljxd8T7ecB0m/view",
-      bullets: [
-        "Engineered the backend for a face-authentication attendance system by receiving facial embeddings from the mobile app, storing encrypted face descriptors in MongoDB, and implementing login-time verification using TensorFlow.js and face-api.js.",
-        "Built a location tracking service that ingested GPS coordinates every 5 seconds, persisted route data, and computed travel distance using the Google Geolocation API and geolib, ensuring accurate movement tracking and efficient geospatial calculations.",
-        "Improved reliability of a legacy codebase by refactoring backend modules, resolving production bugs, and strengthened system stability by adding unit and integration tests, reducing regressions and improving maintainability."
-      ]
-    }
-  ];
-
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
@@ -122,25 +108,6 @@ export default function Page() {
                       >
                         {exp.date}
                       </div>
-                      {exp.certificate && (
-                        <a
-                          href={exp.certificate}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-mono transition-all duration-300 w-max hover:bg-[rgba(212,168,67,0.15)]"
-                          style={{
-                            border: "1px solid rgba(212,168,67,0.25)",
-                            background: "rgba(212,168,67,0.08)",
-                            color: "var(--accent)",
-                          }}
-                        >
-                          Certificate
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                          </svg>
-                        </a>
-                      )}
                     </div>
                   </div>
 

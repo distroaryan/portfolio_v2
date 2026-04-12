@@ -3,38 +3,11 @@ import Image from "next/image";
 import GlassCard from "@/components/GlassCard";
 import SkillsCarousel from "@/components/SkillsCarousel";
 import { projects } from "@/lib/projects";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
+
 import { FaCalendarAlt, FaTwitter, FaGithub, FaLinkedinIn, FaEnvelope, FaFileAlt } from "react-icons/fa";
 
 /* ── Data ──────────────────────────────────────────── */
-
-const terminalSnippets: Record<string, string> = {
-  loadex: "$ curl -s http://localhost:8080/health | jq .",
-  flowguard: "$ go test -bench=. -benchmem ./...",
-  walgo: "$ go run . --engine=wal --port 3001",
-};
-
-const featuredProjects = projects.filter(p => p.title === "Loadex" || p.title === "CourseGen");
-
-const experiences = [
-  {
-    company: "PLYPICKER",
-    role: "Full Stack Intern",
-    date: "Oct 2023 — May 2024",
-    tags: ["Node.js", "Express", "MongoDB", "TailwindCSS", "AWS", "JavaScript"],
-    certificate: "https://drive.google.com/file/d/11zeejmn9jYHZrTlOk4Zbljxd8T7ecB0m/view",
-    bullets: [
-      "Engineered the backend for a face-authentication attendance system by receiving facial embeddings from the mobile app, storing encrypted face descriptors in MongoDB, and implementing login-time verification using TensorFlow.js and face-api.js.",
-      "Built a location tracking service that ingested GPS coordinates every 5 seconds, persisted route data, and computed travel distance using the Google Geolocation API and geolib, ensuring accurate movement tracking and efficient geospatial calculations.",
-      "Improved reliability of a legacy codebase by refactoring backend modules, resolving production bugs, and strengthened system stability by adding unit and integration tests, reducing regressions and improving maintainability."
-    ]
-  }
-];
+const featuredProjects = projects.filter(p => p.title === "Loadex" || p.title === "Resume.AI");
 
 /* ── Social handles for "Find me on the Internet" ─────── */
 const internetSocials = [
@@ -108,16 +81,16 @@ export default function Home() {
           <div
             className="flex items-center gap-2 mb-8 sm:mb-10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-mono w-max"
             style={{
-              border: "1px solid rgba(212, 168, 67, 0.25)",
-              background: "rgba(212, 168, 67, 0.08)",
-              color: "var(--accent)",
+              border: "1px solid rgba(34, 197, 94, 0.25)",
+              background: "rgba(34, 197, 94, 0.08)",
+              color: "rgb(34, 197, 94)",
             }}
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: "var(--accent)" }}></span>
-              <span className="relative inline-flex rounded-full h-2 w-full" style={{ background: "var(--accent)" }}></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: "rgb(34, 197, 94)" }}></span>
+              <span className="relative inline-flex rounded-full h-2 w-full" style={{ background: "rgb(34, 197, 94)" }}></span>
             </span>
-            <span>Looking for full time opportunities</span>
+            <span>Looking for opportunities</span>
           </div>
 
           {/* Bio — full width, two paragraphs */}
@@ -129,19 +102,17 @@ export default function Home() {
             }}
           >
             <p>
-              I&apos;m a backend-focused developer who loves diving into{" "}
-              <span style={{ color: "var(--accent)" }}>distributed systems</span> and{" "}
-              <span style={{ color: "var(--accent)" }}>database internals</span>.
-              I enjoy crafting end-to-end solutions — breaking down complex architectures
-              into clear, manageable steps, picking up new frameworks along the way, and
-              always asking <em>&ldquo;how does this actually work under the hood?&rdquo;</em>
+              I&apos;m a backend-focused full stack developer who likes exploring{" "}
+              complex backend systems and breaking them down into clear and manageable steps.
+              I enjoy crafting end-to-end solutions and always interested in learning
+              new frameworks along the way.
             </p>
             <p
               className="text-sm sm:text-base leading-7"
               style={{ color: "var(--text-muted)" }}
             >
-              Outside of code: currently working through an anime watchlist and planning the
-              next trip — the world is too big to stay in one place.
+              Outside of code you'll find me watching anime, playing games and travelling around the 
+              world
             </p>
           </div>
 
@@ -213,88 +184,6 @@ export default function Home() {
           Skills
         </h2>
         <SkillsCarousel />
-      </section>
-
-      {/* ── Experience ── */}
-      <section className="max-w-[960px] mx-auto px-5 sm:px-6 pb-20 sm:pb-32">
-        {/* Section header with inline "View Experience" link */}
-        <div className="flex items-center justify-between mb-8 sm:mb-10">
-          <h2
-            className="text-2xl sm:text-3xl font-bold tracking-wide"
-            style={{
-              fontFamily: "var(--font-heading), serif",
-              color: "var(--text-primary)",
-            }}
-          >
-            Experience
-          </h2>
-          <Link
-            href="/experience"
-            className="flex items-center gap-1.5 text-sm font-mono tracking-wider transition-colors duration-300 hover:text-[var(--accent)] shrink-0"
-            style={{ color: "var(--text-muted)" }}
-          >
-            View Experience
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-            </svg>
-          </Link>
-        </div>
-
-        <div className="w-full">
-          <Accordion type="single" collapsible className="w-full">
-            {experiences.map((exp, idx) => (
-              <AccordionItem key={idx} value={`item-${idx}`} className="group border border-white/10 rounded-xl px-4 sm:px-6 mb-4 bg-white/[0.01] hover:bg-white/[0.03] hover:border-[#e8c664] hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 ease-out">
-                <AccordionTrigger className="hover:no-underline py-4 transition-all">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full pr-4 gap-2 sm:gap-4 text-left">
-                    <div className="flex flex-col">
-                      <div className="text-xl sm:text-2xl font-bold group-hover:text-[#e8c664] transition-colors" style={{ fontFamily: "var(--font-heading), serif" }}>
-                        {exp.company}
-                      </div>
-                      <div className="text-[var(--text-muted)] font-mono text-xs sm:text-sm mt-1">{exp.role}</div>
-                    </div>
-                    <div className="text-xs sm:text-sm font-mono text-gray-400 border border-white/10 bg-white/5 px-2.5 py-1 rounded w-max whitespace-nowrap">
-                      {exp.date}
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="pt-2 pb-6">
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {exp.tags.map(tag => (
-                      <span key={tag} className="tag-mono text-xs">{tag}</span>
-                    ))}
-                    {exp.certificate && (
-                      <a
-                        href={exp.certificate}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-sm text-xs font-mono font-medium transition-all duration-300 hover:bg-[rgba(212,168,67,0.15)]"
-                        style={{
-                          border: "1px solid rgba(212,168,67,0.3)",
-                          background: "rgba(212,168,67,0.08)",
-                          color: "var(--accent)",
-                        }}
-                      >
-                        Certificate
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="7" y1="17" x2="17" y2="7"></line>
-                          <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                      </a>
-                    )}
-                  </div>
-                  <ul className="space-y-3" style={{ fontFamily: "var(--font-body), sans-serif", color: "var(--text-body)" }}>
-                    {exp.bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-3 leading-relaxed text-[15px] sm:text-[16px]">
-                        <span className="mt-1.5 shrink-0" style={{ color: "var(--accent)", opacity: 0.6 }}>▸</span>
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
       </section>
 
       {/* ── Selected Projects (Bento Grid) ── */}
@@ -386,14 +275,6 @@ export default function Home() {
                 >
                   {p.description}
                 </p>
-
-                {/* Terminal snippet */}
-                {terminalSnippets[p.title.toLowerCase()] && (
-                  <div className="terminal-snippet mb-5 mt-auto">
-                    <span className="prompt">❯ </span>
-                    {terminalSnippets[p.title.toLowerCase()].replace("$ ", "")}
-                  </div>
-                )}
               </div>
 
               <div className="flex flex-wrap items-center gap-3 mt-auto pt-2">

@@ -23,6 +23,15 @@ export default function Footer() {
             distroaryan
           </a>
         </p>
+        <p
+          className="text-[14px] mt-2 block"
+          style={{
+            fontFamily: "var(--font-mono), monospace",
+            color: "var(--text-dim, rgba(255,255,255,0.4))",
+          }}
+        >
+          &copy; 2026 All rights reserved.
+        </p>
       </div>
     </footer>
   );
