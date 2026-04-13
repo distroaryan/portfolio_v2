@@ -13,11 +13,13 @@ export const projects: Experience[] = [
         date: "Oct 2023 — May 2024",
         tags: ["Node.js", "Express", "MongoDB", "TailwindCSS", "AWS", "JavaScript"],
         bullets: [
-            "Built a face-authentication attendance system, designing backend services to process facial embeddings from mobile clients, securely store encrypted descriptors in MongoDB, and perform real-time identity verification.",
+            "Engineered a secure biometric authentication system using Node.js, FaceAPI.js, and OpenCVNodeJS to store facial descriptors, ensuring identity verification during login and sign-up .",
 
-            "Designed and implemented a high-frequency location tracking service, ingesting GPS data every 5 seconds, persisting route histories, and computing travel distance using geospatial APIs, enabling accurate and efficient movement tracking for ~100 active riders.",
+            "Architected a data ingestion pipeline with Apache Kafka to handle GPS coordinates sent from Flutter clients, scaling the architecture to support 10k+ writes per second with minimal data loss.",
 
-            "Improved reliability of a legacy backend system by refactoring core modules, resolving production issues, and introducing unit and integration tests—reducing regressions and significantly improving maintainability."
+            "Developed a dashboard using Next.js, Shadcn UI, and Leaflet.js, integrating a map-based interface to visualize rider paths and historical route data for operational monitoring.",
+
+            "Optimized backend system performance by implementing Redis as a caching layer, which reduced database lookup times by 40%, while proactively resolving critical bugs to improve overall codebase stability."
         ]
     },
 ];
